@@ -44,7 +44,7 @@ def glove2word2vec(glove_vector_file, output_model_file):
         """
         with smart_open.smart_open(infile, 'rb') as old:
             with smart_open.smart_open(outfile, 'wb') as new:
-                new.write(str(line.strip()) + "\n")
+                new.write(bytes(line.strip() + "\n", 'UTF-8'))
                 for line in old:
                     new.write(line)
         return outfile

@@ -23,7 +23,7 @@ def prepend_line(infile, outfile, line):
 	"""
 	with open(infile, 'r') as old:
 		with open(outfile, 'w') as new:
-			new.write(str(line) + "\n")
+			new.write(bytes(line + "\n", 'UTF-8'))
 			shutil.copyfileobj(old, new)
 
 def prepend_slow(infile, outfile, line):
@@ -96,5 +96,5 @@ else:
 # Demo: Loads the newly created glove_model.txt into gensim API.
 model=gensim.models.Word2Vec.load_word2vec_format(gensim_file,binary=False) #GloVe Model
 
-print model.most_similar(positive=['australia'], topn=10)
-print model.similarity('woman', 'man')
+print(model.most_similar(positive=['australia'], topn=10))
+print(model.similarity('woman', 'man'))
